@@ -1,0 +1,17 @@
+与虚拟机联调：
+
+nohup ./geth --verbosity=4 --networkid=313 --datadir=/root/projects/src/github.com/go-ethereum/build/bin/data --rpcaddr=0.0.0.0 --rpcport=8545 --rpc --rpccorsdomain "*" --port=30303 --allow-insecure-unlock >log 2>&1 &
+
+ps -ef|grep geth
+
+./geth attach ipc:data/geth.ipc
+
+admin.addPeer("enode://7a53f65b9fb5964568bfe6be83c05cac1a97e95de0183d9b86b8f863e19aad5a179146e46d8d8ea9d66ae387371346cff7e6bc6cdce164face9b2151b5ded79c@192.168.246.128:30303")
+
+
+跨链相关信息记录：
+address token, uint256 amount, address to, Chain chain作为data（也可能是交易hash），nonce用于确定每笔跨链交易该值递增，blocknumber(用于跨链安全确认)
+直接根据hash出来的一个id，最好是交易hash
+
+afa直接由矿工发起映射交易
+
